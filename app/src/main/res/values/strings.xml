@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Digikala</string>
+    <string name="title_login">ورود | ثبت نام</string>
+    <string name="description_login">سلام!\nلطفا نام کاربری و رمز عبور خود را وارد کنید</string>
+    <string name="user_name_hint">نام کاربری</string>
+    <string name="password_hint">رمز عبور</string>
+    <string name="button_text">ورود</string>
 </resources>
