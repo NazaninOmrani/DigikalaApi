@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/fragmentLogin"
-        android:name="com.example.digikala.ui.LoginFragment"
+        android:name="com.example.digikala.framework.presentation.LoginFragment"
         android:label="FragmentLogin" >
         <action
             android:id="@+id/action_fragmentLogin_to_productFragment"
@@ -14,6 +14,6 @@
     </fragment>
     <fragment
         android:id="@+id/productFragment"
-        android:name="com.example.digikala.ui.ProductFragment"
+        android:name="com.example.digikala.framework.presentation.ProductFragment"
         android:label="ProductFragment" />
 </navigation>

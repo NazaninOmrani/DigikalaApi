@@ -1,4 +1,5 @@
-package com.example.digikala.model
+package com.example.digikala.business.domain.model
+
 
 data class Products(
     var id: Int? = null,

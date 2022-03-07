@@ -1,4 +1,4 @@
-package com.example.digikala.ui
+package com.example.digikala.framework.presentation
 
 import androidx.fragment.app.Fragment
 import com.example.digikala.R

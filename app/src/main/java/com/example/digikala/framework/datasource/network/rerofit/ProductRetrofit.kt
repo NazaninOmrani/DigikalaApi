@@ -1,5 +1,6 @@
-package com.example.digikala.retrofit
+package com.example.digikala.framework.datasource.network.rerofit
 
+import com.example.digikala.framework.datasource.network.model.ProductsNetworkEntity
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.QueryMap

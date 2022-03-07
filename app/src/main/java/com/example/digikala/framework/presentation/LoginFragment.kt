@@ -1,4 +1,4 @@
-package com.example.digikala.ui
+package com.example.digikala.framework.presentation
 
 import android.os.Bundle
 import android.view.View

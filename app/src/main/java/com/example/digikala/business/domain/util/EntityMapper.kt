@@ -1,4 +1,4 @@
-package com.example.digikala.util
+package com.example.digikala.business.domain.util
 
 interface EntityMapper<Entity, DomainModel> {
 

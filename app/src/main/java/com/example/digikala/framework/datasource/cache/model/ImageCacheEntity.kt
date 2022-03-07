@@ -1,4 +1,4 @@
-package com.example.digikala.realm
+package com.example.digikala.framework.datasource.cache.model
 
 import io.realm.RealmObject
 

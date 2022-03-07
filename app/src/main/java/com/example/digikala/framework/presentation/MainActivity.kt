@@ -1,4 +1,4 @@
-package com.example.digikala.ui
+package com.example.digikala.framework.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -1,8 +1,10 @@
-package com.example.digikala.retrofit
+package com.example.digikala.framework.datasource.network.mappers
 
-import com.example.digikala.model.Images
-import com.example.digikala.model.Products
-import com.example.digikala.util.EntityMapper
+import com.example.digikala.business.domain.model.Images
+import com.example.digikala.business.domain.model.Products
+import com.example.digikala.business.domain.util.EntityMapper
+import com.example.digikala.framework.datasource.network.model.ImagesNetworkEntity
+import com.example.digikala.framework.datasource.network.model.ProductsNetworkEntity
 import javax.inject.Inject
 
 class NetworkMapper
