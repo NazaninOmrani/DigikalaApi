@@ -29,4 +29,9 @@ constructor() : EntityMapper<ProductCacheEntity, Products> {
         productCacheEntity.regularPrice = domainModel.regularPrice
         return productCacheEntity
     }
+
+    fun mapFromEntityList(entities: List<ProductCacheEntity>): List<Products> {
+        return entities.map { mapFromEntity(it) }
+    }
+
 }

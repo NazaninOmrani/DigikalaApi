@@ -30,4 +30,8 @@ constructor() : EntityMapper<ProductsNetworkEntity, Products> {
             domainModel.regularPrice
         )
     }
+
+    fun mapFromEntityList(entities: List<ProductsNetworkEntity>): List<Products>{
+        return entities.map { mapFromEntity(it) }
+    }
 }

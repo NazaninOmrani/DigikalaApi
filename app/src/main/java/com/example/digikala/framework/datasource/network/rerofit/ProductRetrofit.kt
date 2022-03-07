@@ -8,5 +8,5 @@ import retrofit2.http.QueryMap
 interface ProductRetrofit {
 
     @GET("products")
-    suspend fun getProducts(@QueryMap queries: Map<String, String>): Call<List<ProductsNetworkEntity>>
+    suspend fun getProducts(@QueryMap queries: Map<String, String>): List<ProductsNetworkEntity>
 }
