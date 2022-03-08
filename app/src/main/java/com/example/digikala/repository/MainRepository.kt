@@ -7,10 +7,9 @@ import com.example.digikala.retrofit.NetworkMapper
 import com.example.digikala.retrofit.ProductRetrofit
 import com.example.digikala.util.DataState
 import io.realm.Realm
-import kotlinx.coroutines.Dispatchers
+import io.realm.kotlin.executeTransactionAwait
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.withContext
 import java.lang.Exception
 import java.util.HashMap
 import javax.inject.Inject
@@ -34,19 +33,19 @@ constructor(
 
     suspend fun getProduct(): Flow<DataState<List<Products>>> = flow {
         emit(DataState.Loading)
-        kotlinx.coroutines.delay(1000)
+        kotlinx.coroutines.delay(500)
         try {
             val networkProducts = productRetrofit.getProducts(mQueries)
             val products = networkMapper.mapFromEntityList(networkProducts)
-/*            withContext(Dispatchers.Main) {
-                for (product in products) {
-                    realm.executeTransaction { realm1 ->
-                        realm1.copyToRealm(cacheMapper.mapToEntity(product))
-                    }
+            for (product in products) {
+                realm.executeTransactionAwait { realm1 ->
+                    realm1.copyToRealm(cacheMapper.mapToEntity(product))
                 }
             }
-            val cachedProducts = realm.where(ProductCacheEntity::class.java).findAll()*/
-            emit(DataState.Success(networkMapper.mapFromEntityList(networkProducts)))
+
+            val cachedProducts = realm.where(ProductCacheEntity::class.java).findAll()
+            emit(DataState.Success(cacheMapper.mapFromEntityList(cachedProducts)))
+
         } catch (e: Exception) {
             emit(DataState.Error(e))
         }
