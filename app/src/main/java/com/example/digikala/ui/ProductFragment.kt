@@ -36,6 +36,7 @@ class ProductFragment : Fragment(R.layout.fragment_product) {
                 }
                 is DataState.Error -> {
                     displayProgressBar(false)
+                    txt_response.visibility = View.VISIBLE
                     displayError(dataState.exception.message.toString())
                 }
                 is DataState.Loading -> {
@@ -46,10 +47,10 @@ class ProductFragment : Fragment(R.layout.fragment_product) {
     }
 
     private fun displayError(message: String) {
-        if (message != null) {
-            textView3.text = message
+        if (message.isNotEmpty()) {
+            txt_response.text = message
         } else {
-            textView3.text = "Unknown error"
+            txt_response.text = "Unknown error"
         }
     }
 
@@ -62,6 +63,6 @@ class ProductFragment : Fragment(R.layout.fragment_product) {
         for (product in products) {
             sb.append(product.name)
         }
-        textView3.text = sb.toString()
+        txt_response.text = sb.toString()
     }
 }
