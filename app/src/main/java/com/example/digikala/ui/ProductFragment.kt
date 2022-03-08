@@ -16,7 +16,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import java.lang.StringBuilder
 
 
-@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class ProductFragment : Fragment(R.layout.fragment_product) {
 
