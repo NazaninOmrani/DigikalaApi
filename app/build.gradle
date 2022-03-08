@@ -55,7 +55,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:4.5.0"
 
     // Navigation Component
-    def Navigation_version = "2.4.1"
+    def Navigation_version = "2.2.2"
     implementation "androidx.navigation:navigation-fragment-ktx:$Navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$Navigation_version"
 
@@ -75,7 +75,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$Coroutine_lifecycle_version"
 
     //Hilt
-    def hilt_version = "2.40"
+    def hilt_version = "2.38"
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
