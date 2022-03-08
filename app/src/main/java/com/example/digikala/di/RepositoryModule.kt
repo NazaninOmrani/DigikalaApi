@@ -1,7 +1,6 @@
 package com.example.digikala.di
 
 import com.example.digikala.realm.CacheMapper
-import com.example.digikala.realm.ProductDao
 import com.example.digikala.repository.MainRepository
 import com.example.digikala.retrofit.NetworkMapper
 import com.example.digikala.retrofit.ProductRetrofit
@@ -9,6 +8,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.realm.Realm
 import javax.inject.Singleton
 
 @Module
@@ -18,12 +18,11 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideMainRepository(
-        productDao: ProductDao,
+        realm: Realm,
         retrofit: ProductRetrofit,
         cacheMapper: CacheMapper,
         networkMapper: NetworkMapper
     ): MainRepository {
-        return MainRepository(productDao, retrofit, cacheMapper, networkMapper)
+        return MainRepository(realm, retrofit, cacheMapper, networkMapper)
     }
-
 }

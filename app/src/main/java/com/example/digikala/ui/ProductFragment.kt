@@ -5,10 +5,13 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.digikala.R
 import com.example.digikala.business.MainStateEvent
 import com.example.digikala.business.MainViewModel
 import com.example.digikala.model.Products
+import com.example.digikala.ui.adapter.ProductAdapter
 import com.example.digikala.util.DataState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_product.*
@@ -64,5 +67,10 @@ class ProductFragment : Fragment(R.layout.fragment_product) {
             sb.append(product.name)
         }
         txt_response.text = sb.toString()
+
+        recyclerview_product.layoutManager =
+            LinearLayoutManager(context, GridLayoutManager.VERTICAL, false)
+        recyclerview_product.adapter = context?.let { ProductAdapter(products, it) }
     }
+
 }

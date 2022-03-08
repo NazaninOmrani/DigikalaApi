@@ -2,18 +2,23 @@ package com.example.digikala.repository
 
 import com.example.digikala.model.Products
 import com.example.digikala.realm.CacheMapper
-import com.example.digikala.realm.ProductDao
+import com.example.digikala.realm.ProductCacheEntity
 import com.example.digikala.retrofit.NetworkMapper
 import com.example.digikala.retrofit.ProductRetrofit
 import com.example.digikala.util.DataState
+import io.realm.Realm
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
 import java.lang.Exception
 import java.util.HashMap
+import javax.inject.Inject
 
 class MainRepository
+@Inject
 constructor(
-    private val productDao: ProductDao,
+    private val realm: Realm,
     private val productRetrofit: ProductRetrofit,
     private val cacheMapper: CacheMapper,
     private val networkMapper: NetworkMapper
@@ -33,13 +38,18 @@ constructor(
         try {
             val networkProducts = productRetrofit.getProducts(mQueries)
             val products = networkMapper.mapFromEntityList(networkProducts)
-            for (product in products) {
-                productDao.insert(cacheMapper.mapToEntity(product))
+/*            withContext(Dispatchers.Main) {
+                for (product in products) {
+                    realm.executeTransaction { realm1 ->
+                        realm1.copyToRealm(cacheMapper.mapToEntity(product))
+                    }
+                }
             }
-            val cachedProducts = productDao.get()
-            emit(DataState.Success(cacheMapper.mapFromEntityList(cachedProducts)))
+            val cachedProducts = realm.where(ProductCacheEntity::class.java).findAll()*/
+            emit(DataState.Success(networkMapper.mapFromEntityList(networkProducts)))
         } catch (e: Exception) {
             emit(DataState.Error(e))
         }
     }
+
 }
