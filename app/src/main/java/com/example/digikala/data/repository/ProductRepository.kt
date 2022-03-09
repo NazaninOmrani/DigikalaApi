@@ -26,7 +26,6 @@ constructor(
     private val cachedProducts = realm.where(ProductCacheEntity::class.java).findAll()
     private val hashMap: HashMap<String, String> = HashMap<String, String>()
 
-    @DelicateCoroutinesApi
     suspend fun getProduct(): Flow<DataState<List<Products>>> = flow {
         try {
             if (cachedProducts.size == 0 || cachedProducts.equals(null)) {
