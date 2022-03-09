@@ -1,9 +1,9 @@
 package com.example.digikala.di
 
-import com.example.digikala.realm.CacheMapper
-import com.example.digikala.repository.MainRepository
-import com.example.digikala.retrofit.NetworkMapper
-import com.example.digikala.retrofit.ProductRetrofit
+import com.example.digikala.data.realm.mapper.CacheMapper
+import com.example.digikala.data.repository.ProdutRepository
+import com.example.digikala.data.retrofit.mapper.NetworkMapper
+import com.example.digikala.data.retrofit.ProductRetrofit
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +22,7 @@ class RepositoryModule {
         retrofit: ProductRetrofit,
         cacheMapper: CacheMapper,
         networkMapper: NetworkMapper
-    ): MainRepository {
-        return MainRepository(realm, retrofit, cacheMapper, networkMapper)
+    ): ProdutRepository {
+        return ProdutRepository(realm, retrofit, cacheMapper, networkMapper)
     }
 }

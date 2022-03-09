@@ -1,10 +1,10 @@
-package com.example.digikala.repository
+package com.example.digikala.data.repository
 
-import com.example.digikala.model.Products
-import com.example.digikala.realm.CacheMapper
-import com.example.digikala.realm.ProductCacheEntity
-import com.example.digikala.retrofit.NetworkMapper
-import com.example.digikala.retrofit.ProductRetrofit
+import com.example.digikala.data.domain.Products
+import com.example.digikala.data.realm.mapper.CacheMapper
+import com.example.digikala.data.realm.model.ProductCacheEntity
+import com.example.digikala.data.retrofit.mapper.NetworkMapper
+import com.example.digikala.data.retrofit.ProductRetrofit
 import com.example.digikala.util.DataState
 import io.realm.Realm
 import io.realm.kotlin.executeTransactionAwait
@@ -15,7 +15,7 @@ import java.lang.Exception
 import java.util.HashMap
 import javax.inject.Inject
 
-class MainRepository
+class ProdutRepository
 @Inject
 constructor(
     private val realm: Realm,

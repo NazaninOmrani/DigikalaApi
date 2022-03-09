@@ -1,4 +1,4 @@
-package com.example.digikala.ui
+package com.example.digikala.ui.view
 
 import android.os.Bundle
 import android.view.View
@@ -10,12 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.digikala.R
 import com.example.digikala.business.MainStateEvent
 import com.example.digikala.business.MainViewModel
-import com.example.digikala.model.Products
+import com.example.digikala.data.domain.Products
 import com.example.digikala.ui.adapter.ProductAdapter
 import com.example.digikala.util.DataState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_product.*
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import java.lang.StringBuilder
 
 

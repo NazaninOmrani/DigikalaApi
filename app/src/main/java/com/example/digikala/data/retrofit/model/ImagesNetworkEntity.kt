@@ -1,4 +1,4 @@
-package com.example.digikala.retrofit
+package com.example.digikala.data.retrofit.model
 
 import com.google.gson.annotations.SerializedName
 

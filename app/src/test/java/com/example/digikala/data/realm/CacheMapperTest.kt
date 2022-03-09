@@ -1,7 +1,10 @@
-package com.example.digikala.realm
+package com.example.digikala.data.realm
 
-import com.example.digikala.model.Images
-import com.example.digikala.model.Products
+import com.example.digikala.data.domain.Images
+import com.example.digikala.data.domain.Products
+import com.example.digikala.data.realm.mapper.CacheMapper
+import com.example.digikala.data.realm.model.ImageCacheEntity
+import com.example.digikala.data.realm.model.ProductCacheEntity
 import org.junit.Assert.*
 import org.junit.Test
 

@@ -1,6 +1,6 @@
 package com.example.digikala.di
 
-import com.example.digikala.retrofit.ProductRetrofit
+import com.example.digikala.data.retrofit.ProductRetrofit
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

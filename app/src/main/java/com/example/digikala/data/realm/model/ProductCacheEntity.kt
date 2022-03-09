@@ -1,5 +1,6 @@
-package com.example.digikala.realm
+package com.example.digikala.data.realm.model
 
+import com.example.digikala.data.realm.model.ImageCacheEntity
 import io.realm.RealmObject
 
 open class ProductCacheEntity(
