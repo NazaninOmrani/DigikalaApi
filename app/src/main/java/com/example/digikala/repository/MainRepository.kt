@@ -8,6 +8,7 @@ import com.example.digikala.retrofit.ProductRetrofit
 import com.example.digikala.util.DataState
 import io.realm.Realm
 import io.realm.kotlin.executeTransactionAwait
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.lang.Exception
@@ -25,6 +26,7 @@ constructor(
     val cachedProducts = realm.where(ProductCacheEntity::class.java).findAll()
     val CONSUMER_KEY = "ck_7c028a04c9faf616410b09e2ab90b1884c875d01"
     val CONSUMER_SECRET = "cs_8c39f626780f01d135719f64214fd092b848f4aa"
+
     private val mQueries: Map<String, String> = object : HashMap<String, String>() {
         init {
             put("consumer_key", CONSUMER_KEY)
@@ -32,6 +34,7 @@ constructor(
         }
     }
 
+    @DelicateCoroutinesApi
     suspend fun getProduct(): Flow<DataState<List<Products>>> = flow {
         try {
             if (cachedProducts.size == 0 || cachedProducts.equals(null)) {
@@ -44,7 +47,6 @@ constructor(
                         realm1.copyToRealm(cacheMapper.mapToEntity(product))
                     }
                 }
-
                 emit(DataState.Success(cacheMapper.mapFromEntityList(cachedProducts)))
             } else {
                 emit(DataState.Success(cacheMapper.mapFromEntityList(cachedProducts)))
@@ -54,5 +56,4 @@ constructor(
             emit(DataState.Error(e))
         }
     }
-
 }

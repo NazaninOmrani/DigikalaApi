@@ -20,13 +20,13 @@ constructor() : EntityMapper<ProductCacheEntity, Products> {
     }
 
     override fun mapToEntity(domainModel: Products): ProductCacheEntity {
-        val productCacheEntity = ProductCacheEntity()
-        productCacheEntity.id = domainModel.id
-        productCacheEntity.images?.src= domainModel.images?.get(0)?.src
-        productCacheEntity.name = domainModel.name
-        productCacheEntity.price = domainModel.price
-        productCacheEntity.regularPrice = domainModel.regularPrice
-        return productCacheEntity
+        return ProductCacheEntity(
+            domainModel.id,
+            domainModel.name,
+            ImageCacheEntity(domainModel.images?.get(0)?.src),
+            domainModel.price,
+            domainModel.regularPrice
+        )
     }
 
     fun mapFromEntityList(entities: List<ProductCacheEntity>): List<Products> {
