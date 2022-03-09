@@ -3,7 +3,7 @@ package com.example.digikala.business
 import androidx.lifecycle.*
 import com.example.digikala.data.domain.Products
 import com.example.digikala.data.repository.ProductRepository
-import com.example.digikala.util.DataState
+import com.example.digikala.util.ProductsState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -17,10 +17,10 @@ constructor(
     private val productRepository: ProductRepository,
 ) : ViewModel() {
 
-    private val _dataState: MutableLiveData<DataState<List<Products>>> = MutableLiveData()
+    private val _productsState: MutableLiveData<ProductsState<List<Products>>> = MutableLiveData()
 
-    val dataState: LiveData<DataState<List<Products>>>
-        get() = _dataState
+    val productsState: LiveData<ProductsState<List<Products>>>
+        get() = _productsState
 
     fun setStateEvent(mainStateEvent: MainStateEvent) {
         viewModelScope.launch {
@@ -28,7 +28,7 @@ constructor(
                 is MainStateEvent.GetProductsEvent -> {
                     productRepository.getProduct()
                         .onEach { dataState ->
-                            _dataState.value = dataState
+                            _productsState.value = dataState
                         }
                         .launchIn(viewModelScope)
                 }

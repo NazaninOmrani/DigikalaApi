@@ -12,7 +12,7 @@ import com.example.digikala.business.MainStateEvent
 import com.example.digikala.business.MainViewModel
 import com.example.digikala.data.domain.Products
 import com.example.digikala.ui.adapter.ProductAdapter
-import com.example.digikala.util.DataState
+import com.example.digikala.util.ProductsState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_product.*
 import java.lang.StringBuilder
@@ -30,18 +30,18 @@ class ProductFragment : Fragment(R.layout.fragment_product) {
     }
 
     private fun subscribeObservers() {
-        viewModel.dataState.observe(viewLifecycleOwner, Observer { dataState ->
+        viewModel.productsState.observe(viewLifecycleOwner, Observer { dataState ->
             when (dataState) {
-                is DataState.Success<List<Products>> -> {
+                is ProductsState.Success<List<Products>> -> {
                     displayProgressBar(false)
                     appendProductData(dataState.data)
                 }
-                is DataState.Error -> {
+                is ProductsState.Error -> {
                     displayProgressBar(false)
                     txt_response.visibility = View.VISIBLE
                     displayError(dataState.exception.message.toString())
                 }
-                is DataState.Loading -> {
+                is ProductsState.Loading -> {
                     displayProgressBar(true)
                 }
             }
