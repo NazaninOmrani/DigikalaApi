@@ -2,7 +2,7 @@ package com.example.digikala.business
 
 import androidx.lifecycle.*
 import com.example.digikala.data.domain.Products
-import com.example.digikala.data.repository.ProdutRepository
+import com.example.digikala.data.repository.ProductRepository
 import com.example.digikala.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -14,7 +14,7 @@ import javax.inject.Inject
 class MainViewModel
 @Inject
 constructor(
-    private val produtRepository: ProdutRepository,
+    private val productRepository: ProductRepository,
 ) : ViewModel() {
 
     private val _dataState: MutableLiveData<DataState<List<Products>>> = MutableLiveData()
@@ -26,7 +26,7 @@ constructor(
         viewModelScope.launch {
             when (mainStateEvent) {
                 is MainStateEvent.GetProductsEvent -> {
-                    produtRepository.getProduct()
+                    productRepository.getProduct()
                         .onEach { dataState ->
                             _dataState.value = dataState
                         }

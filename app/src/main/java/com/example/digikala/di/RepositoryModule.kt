@@ -1,7 +1,7 @@
 package com.example.digikala.di
 
 import com.example.digikala.data.realm.mapper.CacheMapper
-import com.example.digikala.data.repository.ProdutRepository
+import com.example.digikala.data.repository.ProductRepository
 import com.example.digikala.data.retrofit.mapper.NetworkMapper
 import com.example.digikala.data.retrofit.ProductRetrofit
 import dagger.Module
@@ -22,7 +22,7 @@ class RepositoryModule {
         retrofit: ProductRetrofit,
         cacheMapper: CacheMapper,
         networkMapper: NetworkMapper
-    ): ProdutRepository {
-        return ProdutRepository(realm, retrofit, cacheMapper, networkMapper)
+    ): ProductRepository {
+        return ProductRepository(realm, retrofit, cacheMapper, networkMapper)
     }
 }
