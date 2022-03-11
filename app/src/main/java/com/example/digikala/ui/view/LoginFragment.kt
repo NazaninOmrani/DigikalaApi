@@ -19,32 +19,58 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_login.*
 
 @AndroidEntryPoint
-class LoginFragment : Fragment(R.layout.fragment_login), View.OnClickListener {
+class LoginFragment
+    : Fragment(R.layout.fragment_login), View.OnClickListener {
 
     lateinit var navController: NavController
     private val viewModel: LoginViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setOnClickViews()
-        initViews(view)
+        navController = Navigation.findNavController(view)
+        initViews()
     }
 
-    private fun initViews(view: View) {
-        navController = Navigation.findNavController(view)
-        if (editTextPass.text?.equals(null) == false) {
-            frameShowPass.visibility = View.GONE
-        } else {
-            frameShowPass.visibility = View.VISIBLE
+    private fun saveUserInfo() {
+        viewModel.saveUserInfo(
+            UserInfo(
+                editTextName.text.toString(),
+                editTextPass.text.toString()
+            )
+        )
+    }
 
-        }
+    private fun getUserInfo() {
         if (viewModel.getUserInfo() != null) {
             editTextName.setText(viewModel.getUserInfo()?.userName)
             editTextPass.setText(viewModel.getUserInfo()?.password)
         }
+    }
 
+    private fun initViews() {
+        setOnClickViews()
+        getUserInfo()
+        saveUserInfo()
         checkBoxClick()
+        editTextChangeListener()
+        showPassVisibility()
+    }
 
+    private fun setOnClickViews() {
+        buttonLogin.setOnClickListener(this)
+        frameShowPass.setOnClickListener(this)
+        editTextName.setOnClickListener(this)
+    }
+
+    private fun showPassVisibility() {
+        if (editTextPass.text?.equals(null) == false) {
+            frameShowPass.visibility = View.GONE
+        } else {
+            frameShowPass.visibility = View.VISIBLE
+        }
+    }
+
+    private fun editTextChangeListener() {
         editTextName.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 if (viewModel.getUserInfo()?.userName != null &&
@@ -63,7 +89,6 @@ class LoginFragment : Fragment(R.layout.fragment_login), View.OnClickListener {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
             }
         })
-
         editTextPass.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 if (s.isNotEmpty())
@@ -88,16 +113,9 @@ class LoginFragment : Fragment(R.layout.fragment_login), View.OnClickListener {
         })
     }
 
-    private fun setOnClickViews() {
-        buttonLogin.setOnClickListener(this)
-        frameShowPass.setOnClickListener(this)
-        editTextName.setOnClickListener(this)
-    }
-
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.buttonLogin -> buttonClick()
-
             R.id.frameShowPass -> showPassIconClick()
         }
     }
@@ -121,12 +139,7 @@ class LoginFragment : Fragment(R.layout.fragment_login), View.OnClickListener {
     private fun checkBoxClick() {
         checkBoxSaveInfo.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                viewModel.saveUserInfo(
-                    UserInfo(
-                        editTextName.text.toString(),
-                        editTextPass.text.toString()
-                    )
-                )
+                saveUserInfo()
             } else {
                 Toast.makeText(context, R.string.please_save_info, Toast.LENGTH_SHORT).show()
             }

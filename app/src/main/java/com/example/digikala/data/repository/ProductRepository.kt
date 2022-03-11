@@ -29,7 +29,6 @@ constructor(
         try {
             if (cachedProducts.size == 0 || cachedProducts.equals(null)) {
                 emit(ProductsState.Loading)
-                kotlinx.coroutines.delay(500)
                 val networkProducts = productApi.getProducts(provideRequestQueries())
                 val products = networkMapper.mapFromEntityList(networkProducts)
                 for (product in products) {

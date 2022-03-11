@@ -14,21 +14,20 @@ import com.example.digikala.ui.adapter.ProductAdapter
 import com.example.digikala.util.ProductsState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_product.*
-import java.lang.StringBuilder
-
 
 @AndroidEntryPoint
-class ProductFragment : Fragment(R.layout.fragment_product) {
+class ProductFragment
+    : Fragment(R.layout.fragment_product) {
 
     private val viewModel: MainViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        subscribeObservers()
         viewModel.setStateEvent(MainStateEvent.GetProductsEvent)
+        getProductResponse()
     }
 
-    private fun subscribeObservers() {
+    private fun getProductResponse() {
         viewModel.productsState.observe(viewLifecycleOwner, { dataState ->
             when (dataState) {
                 is ProductsState.Success<List<Products>> -> {
@@ -38,7 +37,7 @@ class ProductFragment : Fragment(R.layout.fragment_product) {
                 is ProductsState.Error -> {
                     displayProgressBar(false)
                     txt_response.visibility = View.VISIBLE
-                    displayError(dataState.exception.message.toString())
+                    txt_response.text = dataState.exception.message.toString()
                 }
                 is ProductsState.Loading -> {
                     displayProgressBar(true)
@@ -47,25 +46,11 @@ class ProductFragment : Fragment(R.layout.fragment_product) {
         })
     }
 
-    private fun displayError(message: String) {
-        if (message.isNotEmpty()) {
-            txt_response.text = message
-        } else {
-            txt_response.text = "Unknown error"
-        }
-    }
-
     private fun displayProgressBar(isDisplayed: Boolean) {
         progress_bar.visibility = if (isDisplayed) View.VISIBLE else View.GONE
     }
 
     private fun appendProductData(products: List<Products>) {
-        val sb = StringBuilder()
-        for (product in products) {
-            sb.append(product.name)
-        }
-        txt_response.text = sb.toString()
-
         recyclerview_product.layoutManager =
             LinearLayoutManager(context, GridLayoutManager.VERTICAL, false)
         recyclerview_product.adapter = context?.let { ProductAdapter(products, it) }
