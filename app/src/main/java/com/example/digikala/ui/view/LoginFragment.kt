@@ -3,24 +3,19 @@ package com.example.digikala.ui.view
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.digikala.R
-import com.example.digikala.data.database.datastore.model.UserInfo
-import com.example.digikala.util.DataStoreManager
+import com.example.digikala.ui.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_login.*
-import kotlinx.coroutines.*
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login), View.OnClickListener {
 
     lateinit var navController: NavController
-
-    @Inject
-    lateinit var dataStoreManager: DataStoreManager
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,10 +28,10 @@ class LoginFragment : Fragment(R.layout.fragment_login), View.OnClickListener {
         checkBox_save.setOnClickListener(this)
         imageView2.setOnClickListener(this)
         editText_name.setOnClickListener(this)
-        lifecycleScope.launch {
-            editText_name.setText(dataStoreManager.getString()?.userName)
-            editText_pass.setText(dataStoreManager.getString()?.password)
-        }
+
+        editText_name.setText(viewModel.getName())
+        editText_pass.setText(viewModel.getPass())
+
     }
 
     override fun onClick(v: View?) {
@@ -45,14 +40,10 @@ class LoginFragment : Fragment(R.layout.fragment_login), View.OnClickListener {
 
             R.id.checkBox_save -> {
                 if (checkBox_save.isChecked) {
-                    val name = editText_name.text.toString()
-                    val pass = editText_pass.text.toString()
-                    lifecycleScope.launch {
-                        dataStoreManager.putString(UserInfo(name, pass))
-                    }
+                    viewModel.saveName(editText_name.text.toString())
+                    viewModel.savePass(editText_pass.text.toString())
                 }
             }
-
         }
     }
 }
