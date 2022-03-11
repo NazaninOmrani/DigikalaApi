@@ -1,4 +1,4 @@
-package com.example.digikala.data.realm.model
+package com.example.digikala.data.model.realm
 
 import io.realm.RealmObject
 

@@ -1,6 +1,6 @@
 package com.example.digikala.di
 
-import com.example.digikala.data.retrofit.ProductRetrofit
+import com.example.digikala.data.api.ProductApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,9 +23,11 @@ class RetrofitModule {
 
     @Singleton
     @Provides
-    fun provideProductService(retrofit: Retrofit.Builder): ProductRetrofit {
+    fun provideProductService(
+        retrofit: Retrofit.Builder
+    ): ProductApi {
         return retrofit
             .build()
-            .create(ProductRetrofit::class.java)
+            .create(ProductApi::class.java)
     }
 }

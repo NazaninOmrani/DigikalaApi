@@ -1,10 +1,9 @@
-package com.example.digikala.data.realm.mapper
+package com.example.digikala.data.mapper
 
-import com.example.digikala.util.EntityMapper
-import com.example.digikala.data.domain.Images
-import com.example.digikala.data.domain.Products
-import com.example.digikala.data.realm.model.ImageCacheEntity
-import com.example.digikala.data.realm.model.ProductCacheEntity
+import com.example.digikala.data.model.domain.Images
+import com.example.digikala.data.model.domain.Products
+import com.example.digikala.data.model.realm.ImageCacheEntity
+import com.example.digikala.data.model.realm.ProductCacheEntity
 import javax.inject.Inject
 
 class CacheMapper

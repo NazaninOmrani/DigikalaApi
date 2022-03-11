@@ -1,8 +1,10 @@
 package com.example.digikala.ui.viewmodel
 
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.digikala.data.repository.DataStoreRepository
+import com.example.digikala.data.model.datastore.UserInfo
+import com.example.digikala.data.repository.LoginRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -12,26 +14,16 @@ import javax.inject.Inject
 class LoginViewModel
 @Inject
 constructor(
-    private val repository: DataStoreRepository
+    private val repository: LoginRepository
 ) : ViewModel() {
 
-    fun saveName(value: String) {
+    fun saveUserInfo(userInfo: UserInfo) {
         viewModelScope.launch {
-            repository.putUserName("USERNAME", value)
+            repository.putUserInfo(userInfo)
         }
     }
 
-    fun getName(): String? = runBlocking {
-        repository.getUserName("USERNAME")
-    }
-
-    fun savePass(value: String) {
-        viewModelScope.launch {
-            repository.putPassword("PASS", value)
-        }
-    }
-
-    fun getPass(): String? = runBlocking {
-        repository.getPassword("PASS")
+    fun getUserInfo(): UserInfo? = runBlocking {
+        repository.getUserInfo()
     }
 }

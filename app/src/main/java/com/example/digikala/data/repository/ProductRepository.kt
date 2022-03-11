@@ -1,10 +1,10 @@
 package com.example.digikala.data.repository
 
-import com.example.digikala.data.domain.Products
-import com.example.digikala.data.realm.mapper.CacheMapper
-import com.example.digikala.data.realm.model.ProductCacheEntity
-import com.example.digikala.data.retrofit.mapper.NetworkMapper
-import com.example.digikala.data.retrofit.ProductRetrofit
+import com.example.digikala.data.model.domain.Products
+import com.example.digikala.data.mapper.CacheMapper
+import com.example.digikala.data.model.realm.ProductCacheEntity
+import com.example.digikala.data.mapper.NetworkMapper
+import com.example.digikala.data.api.ProductApi
 import com.example.digikala.util.ProductsState
 import io.realm.Realm
 import io.realm.kotlin.executeTransactionAwait
@@ -18,7 +18,7 @@ class ProductRepository
 @Inject
 constructor(
     private val realm: Realm,
-    private val productRetrofit: ProductRetrofit,
+    private val productApi: ProductApi,
     private val cacheMapper: CacheMapper,
     private val networkMapper: NetworkMapper
 ) {
@@ -30,7 +30,7 @@ constructor(
             if (cachedProducts.size == 0 || cachedProducts.equals(null)) {
                 emit(ProductsState.Loading)
                 kotlinx.coroutines.delay(500)
-                val networkProducts = productRetrofit.getProducts(provideRequestQueries())
+                val networkProducts = productApi.getProducts(provideRequestQueries())
                 val products = networkMapper.mapFromEntityList(networkProducts)
                 for (product in products) {
                     realm.executeTransactionAwait { realm1 ->

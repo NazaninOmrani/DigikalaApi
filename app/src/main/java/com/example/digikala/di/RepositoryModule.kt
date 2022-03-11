@@ -1,12 +1,15 @@
 package com.example.digikala.di
 
-import com.example.digikala.data.realm.mapper.CacheMapper
+import android.content.Context
+import com.example.digikala.data.mapper.CacheMapper
+import com.example.digikala.data.repository.LoginRepository
 import com.example.digikala.data.repository.ProductRepository
-import com.example.digikala.data.retrofit.mapper.NetworkMapper
-import com.example.digikala.data.retrofit.ProductRetrofit
+import com.example.digikala.data.mapper.NetworkMapper
+import com.example.digikala.data.api.ProductApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.realm.Realm
 import javax.inject.Singleton
@@ -17,12 +20,20 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideMainRepository(
+    fun provideProductRepository(
         realm: Realm,
-        retrofit: ProductRetrofit,
+        api: ProductApi,
         cacheMapper: CacheMapper,
         networkMapper: NetworkMapper
     ): ProductRepository {
-        return ProductRepository(realm, retrofit, cacheMapper, networkMapper)
+        return ProductRepository(realm, api, cacheMapper, networkMapper)
+    }
+
+    @Singleton
+    @Provides
+    fun provideLoginRepository(
+        @ApplicationContext context: Context
+    ): LoginRepository {
+        return LoginRepository(context)
     }
 }

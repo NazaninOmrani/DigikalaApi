@@ -1,4 +1,4 @@
-package com.example.digikala.data.domain
+package com.example.digikala.data.model.domain
 
 data class Products(
     var id: Int?,

@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.digikala.R
 import com.example.digikala.business.MainStateEvent
 import com.example.digikala.business.MainViewModel
-import com.example.digikala.data.domain.Products
+import com.example.digikala.data.model.domain.Products
 import com.example.digikala.ui.adapter.ProductAdapter
 import com.example.digikala.util.ProductsState
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +29,7 @@ class ProductFragment : Fragment(R.layout.fragment_product) {
     }
 
     private fun subscribeObservers() {
-        viewModel.productsState.observe(viewLifecycleOwner, Observer { dataState ->
+        viewModel.productsState.observe(viewLifecycleOwner, { dataState ->
             when (dataState) {
                 is ProductsState.Success<List<Products>> -> {
                     displayProgressBar(false)

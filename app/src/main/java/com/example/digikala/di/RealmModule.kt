@@ -16,7 +16,9 @@ class RealmModule {
 
     @Singleton
     @Provides
-    fun provideProductDb(@ApplicationContext context: Context): Realm {
+    fun provideRealm(
+        @ApplicationContext context: Context
+    ): Realm {
         Realm.init(context)
         val config: RealmConfiguration = RealmConfiguration.Builder()
             .deleteRealmIfMigrationNeeded()

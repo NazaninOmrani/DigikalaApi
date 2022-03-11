@@ -1,7 +1,7 @@
 package com.example.digikala.business
 
 import androidx.lifecycle.*
-import com.example.digikala.data.domain.Products
+import com.example.digikala.data.model.domain.Products
 import com.example.digikala.data.repository.ProductRepository
 import com.example.digikala.util.ProductsState
 import dagger.hilt.android.lifecycle.HiltViewModel
