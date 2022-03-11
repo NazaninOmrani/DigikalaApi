@@ -10,6 +10,9 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * this viewModel is for get data from repository and handle response
+ */
 @HiltViewModel
 class MainViewModel
 @Inject

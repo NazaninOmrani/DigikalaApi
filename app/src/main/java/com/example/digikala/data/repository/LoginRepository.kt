@@ -10,6 +10,11 @@ import com.example.digikala.data.model.datastore.UserInfo
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
+/**
+ *This class is Repository for create DataStore Instance AND
+ * create keys then save and get info from DataStore
+ *
+ */
 class LoginRepository
 @Inject
 constructor(
@@ -31,6 +36,13 @@ constructor(
 
     suspend fun getUserInfo(): UserInfo? {
         val preferences: Preferences = context.dataStore.data.first()
-        return preferences[USERNAME]?.let { preferences[PASSWORD]?.let { it1 -> UserInfo(it, it1) } }
+        return preferences[USERNAME]?.let {
+            preferences[PASSWORD]?.let { it1 ->
+                UserInfo(
+                    it,
+                    it1
+                )
+            }
+        }
     }
 }

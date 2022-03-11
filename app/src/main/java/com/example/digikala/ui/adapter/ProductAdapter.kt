@@ -11,6 +11,9 @@ import com.bumptech.glide.Glide
 import com.example.digikala.R
 import com.example.digikala.data.model.domain.Products
 
+/**
+ * This class is adapter for product RecyclerView
+ */
 class ProductAdapter(var dataList: List<Products>, var context: Context) :
     RecyclerView.Adapter<ProductAdapter.PostViewHolder>() {
 
@@ -22,7 +25,7 @@ class ProductAdapter(var dataList: List<Products>, var context: Context) :
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         Glide.with(context).load(dataList[position].images?.get(0)?.src).into(holder.imageView)
-        holder.productName.text= dataList[position].name.toString()
+        holder.productName.text = dataList[position].name.toString()
     }
 
     override fun getItemCount(): Int {

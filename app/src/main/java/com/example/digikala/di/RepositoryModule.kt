@@ -14,6 +14,9 @@ import dagger.hilt.components.SingletonComponent
 import io.realm.Realm
 import javax.inject.Singleton
 
+/**
+ * This Module is for provide Repositories instance for app
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class RepositoryModule {

@@ -18,6 +18,9 @@ import com.example.digikala.ui.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_login.*
 
+/**
+ * This class is fragment login for user login
+ */
 @AndroidEntryPoint
 class LoginFragment
     : Fragment(R.layout.fragment_login), View.OnClickListener {

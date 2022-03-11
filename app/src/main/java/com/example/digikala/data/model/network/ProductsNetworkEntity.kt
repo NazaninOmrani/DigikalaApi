@@ -1,7 +1,9 @@
 package com.example.digikala.data.model.network
 
 import com.google.gson.annotations.SerializedName
-
+/**
+ *This class is Retrofit model for Products entity
+ */
 data class ProductsNetworkEntity(
 
     @SerializedName("id")

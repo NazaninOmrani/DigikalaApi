@@ -14,7 +14,9 @@ import com.example.digikala.ui.adapter.ProductAdapter
 import com.example.digikala.util.ProductsState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_product.*
-
+/**
+ * This class is fragment product for products list
+ */
 @AndroidEntryPoint
 class ProductFragment
     : Fragment(R.layout.fragment_product) {

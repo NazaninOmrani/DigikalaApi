@@ -10,6 +10,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
+/**
+ * this viewModel is for get user info from fragment and save info into DataStore by repository
+ */
 @HiltViewModel
 class LoginViewModel
 @Inject

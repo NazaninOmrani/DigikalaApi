@@ -6,6 +6,11 @@ import com.example.digikala.data.model.network.ImagesNetworkEntity
 import com.example.digikala.data.model.network.ProductsNetworkEntity
 import javax.inject.Inject
 
+/**
+ *This class is for mapping data from DomainModel to RetrofitModel
+ *AND mapping from RetrofitModel to DomainModel
+ */
+
 class NetworkMapper
 @Inject
 constructor() : EntityMapper<ProductsNetworkEntity, Products> {

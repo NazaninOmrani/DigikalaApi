@@ -10,6 +10,9 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 import javax.inject.Singleton
 
+/**
+ * This Module is for provide realm instance for app
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class RealmModule {

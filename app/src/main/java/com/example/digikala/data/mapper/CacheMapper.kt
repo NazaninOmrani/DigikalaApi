@@ -6,6 +6,10 @@ import com.example.digikala.data.model.realm.ImageCacheEntity
 import com.example.digikala.data.model.realm.ProductCacheEntity
 import javax.inject.Inject
 
+/**
+ *This class is for mapping data from DomainModel to RealmModel
+ *AND mapping from RealmModel to DomainModel
+ */
 class CacheMapper
 @Inject
 constructor() : EntityMapper<ProductCacheEntity, Products> {

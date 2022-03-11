@@ -14,6 +14,12 @@ import java.lang.Exception
 import java.util.HashMap
 import javax.inject.Inject
 
+/**
+ *This class is Repository for init states in ProductsState BY
+ * send retrofit request and get data for map to domain AND
+ * map data from domain to realm
+ * then get data from realm
+ */
 class ProductRepository
 @Inject
 constructor(
