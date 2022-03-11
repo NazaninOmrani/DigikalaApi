@@ -62,24 +62,32 @@
         android:fontFamily="@font/main_font"
         android:gravity="start"
         android:hint="@string/password_hint"
-        android:inputType="textPassword"
+        android:inputType="numberPassword"
         android:textSize="@dimen/medium_text_size"
         app:layout_constraintEnd_toEndOf="@+id/editText_name"
         app:layout_constraintStart_toStartOf="@+id/editText_name"
         app:layout_constraintTop_toBottomOf="@+id/editText_name" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button"
-        android:layout_width="0dp"
+        android:layout_width="363dp"
         android:layout_height="56dp"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/main_font_bold"
         android:text="@string/button_text"
         android:textSize="@dimen/large_text_size"
+        app:strokeColor="@color/teal_200"
+        app:strokeWidth="2dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/editText_pass"
-        app:layout_constraintHorizontal_bias="0.561"
+        app:layout_constraintEnd_toEndOf="@+id/checkBox_save"
         app:layout_constraintStart_toStartOf="@+id/editText_pass"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox_save" />
+
+    <CheckBox
+        android:id="@+id/checkBox_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ذخیره شود"
+        app:layout_constraintEnd_toEndOf="@+id/editText_pass"
         app:layout_constraintTop_toBottomOf="@+id/editText_pass" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
