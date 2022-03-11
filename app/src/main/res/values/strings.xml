@@ -2,7 +2,12 @@
     <string name="app_name">Digikala</string>
     <string name="title_login">ورود | ثبت نام</string>
     <string name="description_login">سلام!\nلطفا نام کاربری و رمز عبور خود را وارد کنید</string>
+    <string name="please_inter_name">لطفا نام کاربری و رمز عبور خود را وارد کنید</string>
+    <string name="please_save_info">لطفا نام کاربری و رمز عبور خود را ذخیره کنید</string>
+    <string name="dont_change">تغییر رمز انجام نشد</string>
     <string name="user_name_hint">نام کاربری</string>
     <string name="password_hint">رمز عبور</string>
     <string name="button_text">ورود</string>
+    <string name="save_info">ذخیره نام و رمز عبور</string>
+    <string name="change_info">تغییر نام و رمز عبور</string>
 </resources>
