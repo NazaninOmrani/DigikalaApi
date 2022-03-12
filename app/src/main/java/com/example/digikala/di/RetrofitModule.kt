@@ -26,7 +26,7 @@ class RetrofitModule {
 
     @Singleton
     @Provides
-    fun provideProductService(
+    fun provideProductApi(
         retrofit: Retrofit.Builder
     ): ProductApi {
         return retrofit
