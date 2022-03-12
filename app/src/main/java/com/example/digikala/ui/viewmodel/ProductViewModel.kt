@@ -14,7 +14,7 @@ import javax.inject.Inject
  * this viewModel is for get data from repository and handle response
  */
 @HiltViewModel
-class MainViewModel
+class ProductViewModel
 @Inject
 constructor(
     private val productRepository: ProductRepository,

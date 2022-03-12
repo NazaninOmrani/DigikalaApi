@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.digikala.R
 import com.example.digikala.business.MainStateEvent
-import com.example.digikala.business.MainViewModel
+import com.example.digikala.business.ProductViewModel
 import com.example.digikala.data.model.domain.Products
 import com.example.digikala.ui.adapter.ProductAdapter
 import com.example.digikala.util.ProductsState
@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_product.*
 class ProductFragment
     : Fragment(R.layout.fragment_product) {
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: ProductViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
