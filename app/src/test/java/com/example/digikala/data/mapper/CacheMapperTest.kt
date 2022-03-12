@@ -1,14 +1,14 @@
-package com.example.digikala.data.realm
+package com.example.digikala.data.mapper
 
 import com.example.digikala.data.model.domain.Images
 import com.example.digikala.data.model.domain.Products
-import com.example.digikala.data.mapper.CacheMapper
 import com.example.digikala.data.model.realm.ImageCacheEntity
 import com.example.digikala.data.model.realm.ProductCacheEntity
 import org.junit.Assert.*
 import org.junit.Test
 
 class CacheMapperTest {
+
     private val cacheMapper = CacheMapper()
 
     @Test
@@ -19,8 +19,14 @@ class CacheMapperTest {
 
     @Test
     fun mapToEntity() {
-        val b = cacheMapper.mapToEntity(getProducts())
-        assertEquals(b.id, getProductCacheEntity().id)
+        val a = cacheMapper.mapToEntity(getProducts())
+        assertEquals(a.id, getProductCacheEntity().id)
+    }
+
+    @Test
+    fun mapFromEntityList() {
+        val a = cacheMapper.mapFromEntityList(listOf(getProductCacheEntity()))
+        assertEquals(a, listOf(getProducts()))
     }
 
     private fun getProductCacheEntity(): ProductCacheEntity {
@@ -42,4 +48,5 @@ class CacheMapperTest {
             regularPrice = "2000"
         )
     }
+
 }
