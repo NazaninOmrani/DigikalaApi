@@ -66,10 +66,10 @@ class LoginFragment
     }
 
     private fun showPassVisibility() {
-        if (editTextPass.text?.equals(null) == false) {
-            frameShowPass.visibility = View.GONE
-        } else {
+        if (editTextPass.text.toString() != "") {
             frameShowPass.visibility = View.VISIBLE
+        } else {
+            frameShowPass.visibility = View.GONE
         }
     }
 
